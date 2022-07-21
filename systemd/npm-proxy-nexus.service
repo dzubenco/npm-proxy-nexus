@@ -1,0 +1,14 @@
+[Unit]
+Description=npm-proxy-nexus
+After=syslog.target
+
+[Service]
+User=nexus
+# optionally append --server.port=<port> (default: 8084)
+ExecStart=/usr/bin/java -jar /opt/npm-proxy-nexus/npm-proxy-nexus.jar
+SuccessExitStatus=143
+StandardOutput=append:/var/log/npm-proxy-nexus.log
+StandardError=append:/var/log/npm-proxy-nexus.log
+
+[Install]
+WantedBy=multi-user.target
