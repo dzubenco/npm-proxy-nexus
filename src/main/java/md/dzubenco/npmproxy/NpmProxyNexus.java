@@ -20,7 +20,7 @@ public class NpmProxyNexus {
                 .uri("https://registry.npmjs.org"))
             .route("npm_advisory", r -> r.path("/-/npm/v1/security/advisories/**")
                 .uri("https://registry.npmjs.org"))
-            .route("npm_else", r -> r.path("/**").filters(f -> f.rewritePath("/(?<segment>.*)", "/repository/npm-group/${segment}"))
+            .route("npm_else", r -> r.path("/**").filters(f -> f.rewritePath("/repository/npm-group/(?<segment>.*)", "/${segment}").rewritePath("/(?<segment>.*)", "/repository/npm-group/${segment}"))
                 .uri("http://192.168.107.65:8081"))
             .build();
     }
